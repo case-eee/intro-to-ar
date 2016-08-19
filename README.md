@@ -19,6 +19,7 @@ Once you've run these commands, if you run `tux` from the command line, you'll e
 #### attributes
 ActiveRecord gives you reader and setter methods for each field in your database. In this example, a `Horse` has a `name`, `age`, and `total_winnings`. So, if we have an instance of `Horse`, we can access each of these pieces of data like so:
 
+```ruby
 horse = Horse.first
 horse.name
 # Penelope
@@ -26,6 +27,7 @@ horse.age
 # 29
 horse.total_winnings
 # 34000
+```
 
 #### find
 
@@ -69,21 +71,25 @@ Practice using `#where`. See if you can write and execute (in `tux`) ActiveRecor
 
 #### new
 
-In order to create a new horse, we can use the `#new` method. Similar to the method we created previously, this will take a Hash of arguments. This method can be a bit deceving though. When you execute `Horse.new(name: "Patty")` in your `tux` console, what is the return value? Do you see any SQL that was executed? 
+In order to create a new horse, we can use the `#new` method. Similar to the method we created previously, this will take a Hash of arguments. This method can be a bit deceving though. When you execute `Horse.new(name: "Patty")` in your `tux` console, what is the return value? Do you see that any SQL was executed? 
 
 The answer is no because this `Horse` was not actually sent to the database. `#new` simply creates a new instance of Horse. In order to save this in the database, we need to call `#save` on the instance of `Horse`. You should see an `INSERT INTO` statement in the console after you call this method.
 
 Example:
 
+```ruby
 Horse.new(name: "Piper", age: 10, total_winnings: 134203)
 # <Horse id: nil, name: "Piper", age: 10, total_winnings: 134203, created_at: nil, updated_at: nil>
+```
 
 Notice that the id this specific `Horse` is `nil` along with `created_at` and `updated_at`. We need to `save` this instance if we want it to persist in our database.
 
+```ruby
 horse = Horse.new(name: "Piper", age: 10, total_winnings: 134203)
 # <Horse id: nil, name: "Piper", age: 10, total_winnings: 134203, created_at: nil, updated_at: nil>
 horse.save
 # true
+```
 
 Practice using `#new` and `#save` in `tux`. Pay attention to the return values of both methods.
 
